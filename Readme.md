@@ -5,9 +5,9 @@
 *(문법 100% 호환)*
 * * *
 ### .Net Official System Collections
-  > **Documentation Link:**  [https://learn.microsoft.com/PriorityQueue](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-8.0/)
-  > **도큐먼트 링크:**  [https://learn.microsoft.com/PriorityQueue](https://learn.microsoft.com/ko-kr/dotnet/api/system.collections.generic.priorityqueue-2?view=net-8.0)
-<br>
+  > **Documentation Link:**  [https://learn.microsoft.com/PriorityQueue](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-8.0/)  
+  > **도큐먼트 링크:**  [https://learn.microsoft.com/PriorityQueue](https://learn.microsoft.com/ko-kr/dotnet/api/system.collections.generic.priorityqueue-2?view=net-8.0)  
+
 ### Example
 ``` cs
 PriorityQueue<string, int> testQueue = new PriorityQueue<string, int>(10);
