@@ -7,9 +7,9 @@ using System.Linq;
 
 using UnityEngine;
 
-namespace Custom.Collections
+namespace Clrain.Collections
 {
-    // .Net Core c# 10 ÄÃ·º¼ÇÀ» ºÒ·¯¿Í¼­ ¹®¹ı ´Ù¿î±×·¹ÀÌ¼Ç ÄÁ¹öÆÃ
+    // .Net Core c# 10 ì»¬ë ‰ì…˜ì„ ë¶ˆëŸ¬ì™€ì„œ ë¬¸ë²• ë‹¤ìš´ê·¸ë ˆì´ì…˜ ì»¨ë²„íŒ…
     public class PriorityQueue<TElement, TPriority>
     {
         /// <summary>
@@ -100,7 +100,7 @@ namespace Custom.Collections
         public PriorityQueue(int initialCapacity, IComparer<TPriority>? comparer)
         {
             if (initialCapacity <= 0)
-                throw new ArgumentOutOfRangeException("PriorityQueue : ÃÊ±â »çÀÌÁî°¡ 0º¸´Ù ÀÛÀ½");
+                throw new ArgumentOutOfRangeException("PriorityQueue : ì´ˆê¸° ì‚¬ì´ì¦ˆê°€ 0ë³´ë‹¤ ì‘ìŒ");
             _nodes = new (TElement, TPriority)[initialCapacity];
             _comparer = InitializeComparer(comparer);
         }
@@ -142,7 +142,7 @@ namespace Custom.Collections
         public PriorityQueue(IEnumerable<(TElement Element, TPriority Priority)> items, IComparer<TPriority>? comparer)
         {
             if (items == null)
-                throw new ArgumentNullException("PriorityQueue : itemsÀÌ null");
+                throw new ArgumentNullException("PriorityQueue : itemsì´ null");
             _nodes = items.ToArray();
             _size = _nodes.Length;
             _comparer = InitializeComparer(comparer);
@@ -212,7 +212,7 @@ namespace Custom.Collections
         {
             if (_size == 0)
             {
-                throw new InvalidOperationException("PriorityQueue : ´õÀÌ»ó »¬ ¼ö ÀÖ´Â°Ô ¾øÀ½.");
+                throw new InvalidOperationException("PriorityQueue : ë”ì´ìƒ ëº„ ìˆ˜ ìˆëŠ”ê²Œ ì—†ìŒ.");
             }
 
             return _nodes[0].Element;
@@ -227,7 +227,7 @@ namespace Custom.Collections
         {
             if (_size == 0)
             {
-                throw new InvalidOperationException("PriorityQueue : ´õÀÌ»ó »¬ ¼ö ÀÖ´Â°Ô ¾øÀ½.");
+                throw new InvalidOperationException("PriorityQueue : ë”ì´ìƒ ëº„ ìˆ˜ ìˆëŠ”ê²Œ ì—†ìŒ.");
             }
 
             TElement element = _nodes[0].Element;
@@ -251,7 +251,7 @@ namespace Custom.Collections
         {
             if (_size == 0)
             {
-                throw new InvalidOperationException("PriorityQueue : ´õÀÌ»ó »¬ ¼ö ÀÖ´Â°Ô ¾øÀ½.");
+                throw new InvalidOperationException("PriorityQueue : ë”ì´ìƒ ëº„ ìˆ˜ ìˆëŠ”ê²Œ ì—†ìŒ.");
             }
 
             (TElement Element, TPriority Priority) root = _nodes[0];
@@ -384,7 +384,7 @@ namespace Custom.Collections
         public void EnqueueRange(IEnumerable<(TElement Element, TPriority Priority)> items)
         {
             if (items == null)
-                throw new ArgumentNullException("PriorityQueue : itemsÀÌ Null");
+                throw new ArgumentNullException("PriorityQueue : itemsì´ Null");
 
             int count = 0;
             var collection = items as ICollection<(TElement Element, TPriority Priority)>;
@@ -448,7 +448,7 @@ namespace Custom.Collections
         public void EnqueueRange(IEnumerable<TElement> elements, TPriority priority)
         {
             if (elements == null)
-                throw new ArgumentNullException("PriorityQueue : elementsÀÌ Null");
+                throw new ArgumentNullException("PriorityQueue : elementsì´ Null");
             int count;
             if (elements is ICollection<TElement> collection &&
                 (count = collection.Count) > _nodes.Length - _size)
@@ -569,7 +569,7 @@ namespace Custom.Collections
         public int EnsureCapacity(int capacity)
         {
             if (capacity <= 0)
-                throw new ArgumentOutOfRangeException("PriorityQueue : capacityÀÌ À½¼ö.");
+                throw new ArgumentOutOfRangeException("PriorityQueue : capacityì´ ìŒìˆ˜.");
 
             if (_nodes.Length < capacity)
             {
@@ -927,26 +927,26 @@ namespace Custom.Collections
             void ICollection.CopyTo(Array array, int index)
             {
                 if (array == null)
-                    throw new ArgumentNullException("PriorityQueue : arrayÀÌ null.");
+                    throw new ArgumentNullException("PriorityQueue : arrayì´ null.");
 
                 if (array.Rank != 1)
                 {
-                    throw new ArgumentException("PriorityQueue :¹è¿­ÀÌ 1Â÷¿ø ¹è¿­ÀÌ ¾Æ´Ô.");
+                    throw new ArgumentException("PriorityQueue :ë°°ì—´ì´ 1ì°¨ì› ë°°ì—´ì´ ì•„ë‹˜.");
                 }
 
                 if (array.GetLowerBound(0) != 0)
                 {
-                    throw new ArgumentException("PriorityQueue :¹è¿­ÀÇ ÀÎµ¦½º°¡ 0ºÎÅÍ ½ÃÀÛÇÏÁö ¾ÊÀ½.");
+                    throw new ArgumentException("PriorityQueue :ë°°ì—´ì˜ ì¸ë±ìŠ¤ê°€ 0ë¶€í„° ì‹œì‘í•˜ì§€ ì•ŠìŒ.");
                 }
 
                 if (index < 0 || index > array.Length)
                 {
-                    throw new ArgumentOutOfRangeException("PriorityQueue :ÀÎµ¦½º°¡ ¹è¿­ ¹üÀ§ ÃÊ°ú.");
+                    throw new ArgumentOutOfRangeException("PriorityQueue :ì¸ë±ìŠ¤ê°€ ë°°ì—´ ë²”ìœ„ ì´ˆê³¼.");
                 }
 
                 if (array.Length - index < _queue._size)
                 {
-                    throw new ArgumentException("PriorityQueue : Ä«ÇÇÇÒ ´ë»óÀÇ °ø°£ÀÌ ºÎÁ·ÇÔ.(¿ë·® ÃÊ°ú)");
+                    throw new ArgumentException("PriorityQueue : ì¹´í”¼í•  ëŒ€ìƒì˜ ê³µê°„ì´ ë¶€ì¡±í•¨.(ìš©ëŸ‰ ì´ˆê³¼)");
                 }
 
                 try
@@ -955,7 +955,7 @@ namespace Custom.Collections
                 }
                 catch (ArrayTypeMismatchException)
                 {
-                    throw new ArgumentException("PriorityQueue : ¹è¿­ÀÇ Å¸ÀÔÀÌ ¸ÂÁö ¾ÊÀ½.");
+                    throw new ArgumentException("PriorityQueue : ë°°ì—´ì˜ íƒ€ì…ì´ ë§ì§€ ì•ŠìŒ.");
                 }
             }
 
@@ -1005,7 +1005,7 @@ namespace Custom.Collections
                 {
                     if (_version != _queue._version)
                     {
-                        throw new InvalidOperationException("PriorityQueue : ÀÌ´º¸Ó·¹ÀÌÅÍ¿Í ¿øº»ÀÇ Å¸ÀÔ¿¡ ¹Ì½º¸ÅÄª ¹ß»ı. ¹İº¹ÀÚ ¹İº¹Áß List Size º¯°æ.");
+                        throw new InvalidOperationException("PriorityQueue : ì´ë‰´ë¨¸ë ˆì´í„°ì™€ ì›ë³¸ì˜ íƒ€ì…ì— ë¯¸ìŠ¤ë§¤ì¹­ ë°œìƒ. ë°˜ë³µì ë°˜ë³µì¤‘ List Size ë³€ê²½.");
                     }
 
                     _index = _queue._size + 1;
@@ -1023,7 +1023,7 @@ namespace Custom.Collections
                 {
                     if (_version != _queue._version)
                     {
-                        throw new InvalidOperationException("PriorityQueue : ÀÌ´º¸Ó·¹ÀÌÅÍ¿Í ¿øº»ÀÇ Å¸ÀÔ¿¡ ¹Ì½º¸ÅÄª ¹ß»ı. ¹İº¹ÀÚ ¹İº¹Áß List Size º¯°æ.");
+                        throw new InvalidOperationException("PriorityQueue : ì´ë‰´ë¨¸ë ˆì´í„°ì™€ ì›ë³¸ì˜ íƒ€ì…ì— ë¯¸ìŠ¤ë§¤ì¹­ ë°œìƒ. ë°˜ë³µì ë°˜ë³µì¤‘ List Size ë³€ê²½.");
                     }
 
                     _index = 0;
