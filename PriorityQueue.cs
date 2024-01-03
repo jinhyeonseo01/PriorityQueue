@@ -235,6 +235,19 @@ namespace Clrain.Collections
             return element;
         }
 
+        public TElement Dequeue(out TPriority priority)
+        {
+            if (_size == 0)
+            {
+                throw new InvalidOperationException("PriorityQueue : 더이상 뺄 수 있는게 없음.");
+            }
+
+            TElement element = _nodes[0].Element;
+            priority = _nodes[0].Priority;
+            RemoveRootNode();
+            return element;
+        }
+
         /// <summary>
         ///  Removes the minimal element and then immediately adds the specified element with associated priority to the <see cref="PriorityQueue{TElement, TPriority}"/>,
         /// </summary>
