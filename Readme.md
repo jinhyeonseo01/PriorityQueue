@@ -2,8 +2,8 @@
 **Script that converted the .Net offLcial PriorityQueue for use in Unity**  
 *(Unity에서 사용하기 위해 .Net C# 13 공식 PriorityQueue를 변환한 스크립트)*  
 
-*.Net offLcial syntax 100% compatible.* 
-*update - C# 13 version compatible*
+*.Net offLcial syntax 100% compatible.*  
+*update - C# 13 version compatible*  
 * * *
 ### .Net Official System Collections
   > **Documentation Link:**  [https://learn.microsoft.com/PriorityQueue](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2?view=net-8.0/)  
