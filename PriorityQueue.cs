@@ -543,11 +543,25 @@ namespace Clrain.Collections
 
                 if (_comparer == null)
                 {
-                    MoveDownDefaultComparer(lastNode, index);
+                    if (Comparer<TPriority>.Default.Compare(lastNode.Priority, priority) < 0)
+                    {
+                        MoveUpDefaultComparer(lastNode, index);
+                    }
+                    else
+                    {
+                        MoveDownDefaultComparer(lastNode, index);
+                    }
                 }
                 else
                 {
-                    MoveDownCustomComparer(lastNode, index);
+                    if (_comparer.Compare(lastNode.Priority, priority) < 0)
+                    {
+                        MoveUpCustomComparer(lastNode, index);
+                    }
+                    else
+                    {
+                        MoveDownCustomComparer(lastNode, index);
+                    }
                 }
             }
 
